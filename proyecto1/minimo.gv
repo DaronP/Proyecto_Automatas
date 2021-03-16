@@ -1,0 +1,13 @@
+digraph finite_state_machine {
+	rankdir=LR size="8,5"
+	node [shape=doublecircle]
+	A
+	B
+	A
+	B
+	node [shape=circle]
+	A -> A [label=b]
+	A -> B [label=b]
+	B -> A [label=b]
+	B -> B [label=b]
+}
