@@ -99,7 +99,7 @@ def move(trans, estado, symbol):
 def simulacion(trans_S, cadena, strt_end_S, alfa):
     for item in cadena:
         if item not in alfa:
-            print("no existe")
+            print("no existe en alfabeto")
             return 0
     
     else:
@@ -107,7 +107,7 @@ def simulacion(trans_S, cadena, strt_end_S, alfa):
             move_item_S = move(trans_S, strt_end_S[0][0], item)
             
             if not move_item_S:
-                print("move no existe")
+                print("no tiene transicion")
                 return 0
 
             list_s = list(move_item_S)

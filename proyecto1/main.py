@@ -32,14 +32,20 @@ grafo(minimo, min_end, "minimo")
 
 cadena = input("Ingrese la cadena de caracteres para probar la simulacion\n")
 
-res = simulacion(sub_estados, cadena, sub_end, alfa)
+res_t = simulacion(thom_resultado, cadena, thom_trans, alfa)
 
-if res == 0:
+res_s = simulacion(sub_estados, cadena, sub_end, alfa)
+
+if res_t == 0:
     print("La cadena NO pertenede a THOMSON")
+
+if res_t == 1:
+    print("La cadena SI pertenede a THOMSON")
+
+if res_s == 0:
     print("La cadena NO pertenede a SUBCONJUNTOS")
     print("La cadena NO pertenede a MINIMO")
 
-if res == 1:
-    print("La cadena SI pertenede a THOMSON")
+if res_s == 1:
     print("La cadena SI pertenede a SUBCONJUNTOS")
     print("La cadena SI pertenede a MINIMO")

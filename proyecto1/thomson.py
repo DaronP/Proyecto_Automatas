@@ -92,6 +92,7 @@ def thomson(exp_posfix, alfa):
             #Corrigiendo concatenaciones
             #if exp_posfix[i - 1] == '|' or exp_posfix[i - 1] == '*' or exp_posfix[i - 1] == '_':
             try:
+                #Si nodos tiene solo un nivel
                 li = []
                 for l in nodos[0][-1]:
                     for l2 in l:
@@ -105,10 +106,10 @@ def thomson(exp_posfix, alfa):
 
                 if nodos[0][0][-1][-1] != li[-2]:
                     nodos[0][0].append([nodos[0][0][-1][-1], EPSILON, li[-2]])
-                print(nodos[0][0][-1][-1], EPSILON, li[-2])
-                print(1)
+
             except:
                 try:
+                    #Si nodos tiene dos niveles
                     li = []
                     for l in nodos[0][-1]:
                         if type(l) is int:
@@ -153,11 +154,7 @@ def thomson(exp_posfix, alfa):
                                     nodos[0][0].append([nodos[0][-1][-1], EPSILON, nodos[-1][0][-1][0]])
                             
                             if nodos[-1][0][-1][-1] != li[-2]:
-                                nodos[0][0].append([nodos[-1][0][-1][-1], EPSILON, li[-2]])
-
-                    print(nodos[0][0][-1][-1], EPSILON, li[-2])
-                    print(2)
-                    
+                                nodos[0][0].append([nodos[-1][0][-1][-1], EPSILON, li[-2]])                    
                 except:
                     pass
 
