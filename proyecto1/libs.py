@@ -55,7 +55,11 @@ def cerr_e(trans, lim):
     return e_trans
 
 def move(trans, estado, symbol):
-    estado = list(estado)
+    try:
+        estado = list(estado)
+    except:
+        pass
+
     move_trans = []
     #Si es una lista de estados
     if type(estado) is list:
@@ -92,6 +96,32 @@ def move(trans, estado, symbol):
         
         return mov
     
+def simulacion(trans_S, cadena, strt_end_S, alfa):
+    for item in cadena:
+        if item not in alfa:
+            print("no existe")
+            return 0
+    
+    else:
+        for item in cadena:
+            move_item_S = move(trans_S, strt_end_S[0][0], item)
+            
+            if not move_item_S:
+                print("move no existe")
+                return 0
+
+            list_s = list(move_item_S)
+
+            nodo_s = list_s[0]
+
+        count_s = 0
+
+        for nodo in range(len(strt_end_S)):
+            if nodo_s == strt_end_S[nodo][1]:
+                count_s += 1
+
+        if count_s > 0:
+            return 1
 
 def postfix(exp):
     pila = []

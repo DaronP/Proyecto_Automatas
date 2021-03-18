@@ -88,17 +88,94 @@ def thomson(exp_posfix, alfa):
                 
             pila_fin.append([penultim_nodo[0], ultim_nodo[1]])
             nodos.append([limpias, ultim])
+
+            #Corrigiendo concatenaciones
+            #if exp_posfix[i - 1] == '|' or exp_posfix[i - 1] == '*' or exp_posfix[i - 1] == '_':
+            try:
+                li = []
+                for l in nodos[0][-1]:
+                    for l2 in l:
+                        if type(l2) is int:
+                                li.append(l2)
+                li = sorted(li)
+
+                for w in range(len(li) - 1, - 1, - 1):        
+                    if(li[w] in li[:w]):
+                        del(li[w])
+
+                if nodos[0][0][-1][-1] != li[-2]:
+                    nodos[0][0].append([nodos[0][0][-1][-1], EPSILON, li[-2]])
+                print(nodos[0][0][-1][-1], EPSILON, li[-2])
+                print(1)
+            except:
+                try:
+                    li = []
+                    for l in nodos[0][-1]:
+                        if type(l) is int:
+                            li.append(l)
+
+                    li = sorted(li)
+
+                    if nodos[0][0][-1][-1] != li[-2]:
+                        nodos[0][0].append([nodos[0][0][-1][-1], EPSILON, li[-2]])
+
+                    buff = []
+                    for l in nodos[0][0]:
+                        buff.append(l)
+                    buff2 = []
+                    for l2 in nodos[-1][0]:
+                        buff2.append(l2)
+                                            
+                    if nodos[-1][0][-1][0] not in buff or nodos[-1][0][-1][0] not in buff2:
+                        if nodos[-1][0][-1][-1] not in buff or nodos[-1][0][-1][-1] not in buff2:
+                            li = []
+                            for l in nodos[-1][-1]:
+                                if type(l) is list:
+                                    for l2 in l:
+                                        if type(l2) is list:
+                                            for l3 in l2:
+                                                if type(l3) is int:
+                                                    li.append(l3)
+                                        else:
+                                            if type(l2) is int:
+                                                li.append(l2)
+                                else:
+                                    if type(l) is int:
+                                        li.append(l)
+                            li = sorted(li)
+
+                            for w in range(len(li) - 1, - 1, - 1):        
+                                if(li[w] in li[:w]):
+                                    del(li[w])
+
+                            if exp_posfix[i - 1] not in alfa:
+                                if nodos[0][-1][-1] != nodos[-1][0][-1][0]:
+                                    nodos[0][0].append([nodos[0][-1][-1], EPSILON, nodos[-1][0][-1][0]])
+                            
+                            if nodos[-1][0][-1][-1] != li[-2]:
+                                nodos[0][0].append([nodos[-1][0][-1][-1], EPSILON, li[-2]])
+
+                    print(nodos[0][0][-1][-1], EPSILON, li[-2])
+                    print(2)
+                    
+                except:
+                    pass
+
+                       
             '''
             if exp_posfix[i-1] == '*' or exp_posfix[i-1] == '|':
                 last = sorted(ultim, key=itemgetter(0))
                 nodos.append([limpias[-1][-1], 'wasd', last[-1][0]])
             '''
+            
     respuesta = sorted(sacar_lista(nodos), key=itemgetter(0))
 
     #Eliminar duplicados
     for i in range(len(respuesta) - 1, - 1, - 1):        
         if(respuesta[i] in respuesta[:i]):
             del(respuesta[i])
+
+    
 
     return respuesta, pila_fin
 

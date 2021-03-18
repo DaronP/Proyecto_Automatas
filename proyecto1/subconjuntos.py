@@ -28,22 +28,26 @@ def subconjuntos(trans, strt_end):
     estado = 0
     while estado < len(estados):
         for symbol in symbols:
+            #move(T, a)
             move_res = move(trans, estados[estado], symbol)
+            #Cerradura-e de move(T, a)
             e_move = cerr_e(trans, move_res)
             tabla_trans.append([estados[estado], symbol, e_move])
 
+            #Appendeando nuevos limites de DFA
             for nodo in strt_end:
                 if nodo[1] in e_move:
                     new_lim.append(e_move)
+            #Appendenado nuevos estados que no sean vacios
             if e_move not in estados and e_move is not None:
                 estados.append(e_move)
         estado += 1
     
-    #
+    #Eliminando estados vacios
     estado = 0
     while estado < len(tabla_trans):
-        if tabla_trans[estado][0] == set() or tabla_trans[estado][2] == set():
-            print(tabla_trans.pop(estado), "****************")
+        if len(tabla_trans[estado][0]) == 0 or len(tabla_trans[estado][2]) == 0:
+            tabla_trans.pop(estado)
             estado -= 1
         estado += 1
 
