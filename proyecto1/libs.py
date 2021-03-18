@@ -96,12 +96,32 @@ def move(trans, estado, symbol):
         
         return mov
     
-def simulacion(trans_S, cadena, strt_end_S, alfa):
+def simulacion(trans_S, cadena, strt_end_S, alfa, tipo = 1):
     for item in cadena:
         if item not in alfa:
             print("no existe en alfabeto")
             return 0
-    
+
+    if tipo == 0:
+        move_list = []
+        for item in cadena:
+            for estado in trans_S:
+                move_item_T = move(trans_S, estado[0], item)
+                move_list.append(move_item_T)
+
+        #eliminando duplicados
+        for i in range(len(move_list) - 1, - 1, - 1):        
+            if not move_list[i]:
+                del(move_list[i])
+
+        ultimo_move = move(trans_S, move_list[-1], EPSILON)
+        
+        for u in ultimo_move:
+            if u == strt_end_S[-1][-1]:
+                return 1
+            else:
+                return 0
+
     else:
         for item in cadena:
             move_item_S = move(trans_S, strt_end_S[0][0], item)

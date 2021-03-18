@@ -106,7 +106,7 @@ def thomson(exp_posfix, alfa):
 
                 if nodos[0][0][-1][-1] != li[-2]:
                     nodos[0][0].append([nodos[0][0][-1][-1], EPSILON, li[-2]])
-
+                print(1)
             except:
                 try:
                     #Si nodos tiene dos niveles
@@ -155,7 +155,9 @@ def thomson(exp_posfix, alfa):
                             
                             if nodos[-1][0][-1][-1] != li[-2]:
                                 nodos[0][0].append([nodos[-1][0][-1][-1], EPSILON, li[-2]])                    
+                    print(2)
                 except:
+                    print(3)
                     pass
 
                        

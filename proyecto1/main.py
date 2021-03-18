@@ -32,7 +32,7 @@ grafo(minimo, min_end, "minimo")
 
 cadena = input("Ingrese la cadena de caracteres para probar la simulacion\n")
 
-res_t = simulacion(thom_resultado, cadena, thom_trans, alfa)
+res_t = simulacion(thom_resultado, cadena, thom_trans, alfa, 0)
 
 res_s = simulacion(sub_estados, cadena, sub_end, alfa)
 
