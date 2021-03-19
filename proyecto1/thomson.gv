@@ -1,7 +1,7 @@
 digraph finite_state_machine {
 	rankdir=LR size="8,5"
 	node [shape=doublecircle]
-	22
+	18
 	node [shape=circle]
 	1 -> 2 [label=a]
 	2 -> 6 [label="ε"]
@@ -23,11 +23,6 @@ digraph finite_state_machine {
 	14 -> 16 [label="ε"]
 	15 -> 13 [label="ε"]
 	15 -> 16 [label="ε"]
-	16 -> 21 [label="ε"]
+	16 -> 17 [label="ε"]
 	17 -> 18 [label=b]
-	18 -> 22 [label="ε"]
-	19 -> 20 [label="ε"]
-	20 -> 22 [label="ε"]
-	21 -> 17 [label="ε"]
-	21 -> 19 [label="ε"]
 }

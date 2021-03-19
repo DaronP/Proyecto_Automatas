@@ -2,12 +2,26 @@ from graphviz import Digraph
 from thomson import *
 from subconjuntos import *
 from libs import *
-
+import sys
 
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz/bin'
 
 
-expr = input("Ingrese la expresion regular \n")
+exp = input("Ingrese la expresion regular \n")
+
+exxpr = exp[:0] + '(' + exp[0:]
+expr = exxpr[:-1] + ')' + exxpr[-1:]
+count = 0
+
+for item in range(len(expr)):
+    if expr[item] == '(' or expr[item] == ')':
+        count += 1
+    
+    
+if count % 2 == 0:
+    print("\Cadena aceptada\n")
+else:
+    sys.exit('Cadena contiene error')
 
 
 pos_exp, alfa = postfix(expr)
