@@ -96,9 +96,7 @@ def move(trans, estado, symbol):
         
         return mov
     
-def simulacion(trans_S, cad, strt_end_S, alfa, tipo = 1):
-    cadena = []
-    cadena[:0] = cad
+def simulacion(trans_S, cadena, strt_end_S, alfa, tipo = 1):
     for item in cadena:
         if item not in alfa:
             print("no existe en alfabeto")
@@ -107,43 +105,22 @@ def simulacion(trans_S, cad, strt_end_S, alfa, tipo = 1):
     if tipo == 0:
         move_list = []
         for item in cadena:
-            cant = 0
-            l = []
-            li = []
-            for estado in range(len(trans_S)):                
-                move_item_T = move(trans_S, trans_S[estado], item)
-                if move_item_T:
-                    l.append(move_item_T)
+            for estado in trans_S:
+                move_item_T = move(trans_S, estado[0], item)
+                move_list.append(move_item_T)
 
-            for i in range(len(l) - 1, - 1, - 1):        
-                if(l[i] in l[:i]):
-                    del(l[i])
+        #eliminando duplicados
+        for i in range(len(move_list) - 1, - 1, - 1):        
+            if not move_list[i]:
+                del(move_list[i])
 
-            for v in l:
-                if cant <= cadena.index(item) + 1:
-                    li.append(v)
-                    cant += 1
-            move_list.append(li)
-        for vk in range(len(move_list) - 1, -1, -1):
-            if move_list[vk] == move_list[vk - 1]:
-                continue
+        ultimo_move = move(trans_S, move_list[-1], EPSILON)
+        
+        for u in ultimo_move:
+            if u == strt_end_S[-1][-1]:
+                return 1
             else:
-                for elem in range(len(move_list[vk - 1]), -1, -1):
-                    g = []
-                    for a in alfa:
-                        mv = move(trans_S, elem, a)
-                        mv2 = move(trans_S, mv, EPSILON)
-                        if mv or mv2:
-                            g.append([mv, mv2])
-
-                    for a in g:
-                        for a2 in a:
-                            if a2 not in move_list[vk][-1] and a2 not in move_list[vk][-2]:
-                                return 0
-                            else:
-                                continue
-
-        print(move_list)
+                return 0
 
     else:
         for item in cadena:

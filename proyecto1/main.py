@@ -42,10 +42,10 @@ if res_t == 0:
 if res_t == 1:
     print("La cadena SI pertenede a THOMSON")
 
-if res_s == 0 and res_t == 0:
+if res_s == 0:
     print("La cadena NO pertenede a SUBCONJUNTOS")
     print("La cadena NO pertenede a MINIMO")
 
-if res_s == 1 and res_t == 1:
+if res_s == 1:
     print("La cadena SI pertenede a SUBCONJUNTOS")
     print("La cadena SI pertenede a MINIMO")
