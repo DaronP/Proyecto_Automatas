@@ -18,13 +18,14 @@ def grafo(nodos, lim, name):
 
 def sacar_lista(lista, pila = []):
     res = []
-
-    for val in lista:
-        if type(val) is list:
-            sacar_lista(val, pila)
-        else:
-            pila.append(val)
-    
+    try:
+        for val in lista:
+            if type(val) is list:
+                sacar_lista(val, pila)
+            else:
+                pila.append(val)
+    except:
+        pass
     for j in range(0, len(pila), 3):
         if j < len(pila):
             res.append([pila[j], pila[j + 1], pila[j + 2]])

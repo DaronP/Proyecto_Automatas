@@ -10,7 +10,7 @@ digraph finite_state_machine {
 	B
 	E
 	B
-	E
+	C
 	node [shape=circle]
 	A -> B [label=a]
 	A -> C [label=b]
@@ -21,5 +21,5 @@ digraph finite_state_machine {
 	D -> B [label=a]
 	D -> E [label=b]
 	E -> B [label=a]
-	E -> E [label=b]
+	E -> C [label=b]
 }
